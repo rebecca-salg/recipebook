@@ -23,4 +23,8 @@ public class RecipeRepository {
 
         return false;
     }
+
+    public List<Recipe> getRecipes() {
+        return recipes;
+    }
 }

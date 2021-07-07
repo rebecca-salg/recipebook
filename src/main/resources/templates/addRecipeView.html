@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="mx-1">
+    <form method="POST" action="/add">
+        <div class="container">
+            <div class="row justify-content-md-center align-items-center">
+                <div class="col-6 col-md-4">
+                    <label for="title">Title</label>
+                    <input class="form-control " type="text" id="title" name="title" placeholder="Title of recipe">
+                </div>
+                <div class="col-6 col-md-4">
+                    <label for="description">Description</label>
+                    <input class="form-control " id="description" type="text" name="description" placeholder="Describe recipe steps">
+                </div>
+            </div>
+
+            <div class="row justify-content-md-center align-items-center">
+                <div class="col-6 col-md-4">
+                    <label for="category">Choose category</label>
+                    <select class="form-control " id="category" name="category">
+                        <option id="starter" value="CATEGORY_STARTER" name="starter">
+                            starter
+
+                        </option><option id="main" value="CATEGORY_MAIN" name="main">
+                        main
+
+                    </option><option id="dessert" value="CATEGORY_DESSERT" name="dessert">
+                        dessert
+                    </option></select>
+                </div>
+                <div class="col-6 col-md-4 col align-self-end">
+                    <button class="btn btn-primary" type="submit">Add</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>
