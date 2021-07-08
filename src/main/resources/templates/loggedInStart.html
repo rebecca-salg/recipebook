@@ -11,7 +11,7 @@
 <header th:insert="menu :: header" />
   <div class="container mt-5" style="max-width: 900px;">
     <div class="container d-flex justify-content-center">
-        <h1 th:text="'Welcome ' + ${username}" />
+        <h1 th:text="'Welcome ' + ${session.username}" />
     </div>
       <div class="container d-flex flex-column justify-content-center mt-5 mb-3">
           <div class="mb-2">
@@ -26,7 +26,7 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <tr  th:each="recipe : ${recipes}" th:if="${recipes.indexOf(r) < 3}">
+                  <tr  th:each="recipe : ${recipes}" th:if="${recipes.indexOf(recipe) < 3}">
                       <th scope="row" th:text="${recipe.id}">ID</th>
                       <td>
                           <a  class="link-secondary text-decoration-none" th:href="'/recipes/' + ${recipe.id}" th:text="${recipe.title}">
