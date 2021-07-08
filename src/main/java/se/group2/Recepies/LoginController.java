@@ -15,17 +15,28 @@ public class LoginController {
     public String loginPage(){
         return "login";
     }
+
     @PostMapping("/login")
-    public String loginPageInfo(HttpSession session,  @RequestParam(required = false,defaultValue = " ") String username,
-                                @RequestParam(required = false,defaultValue = " ") String password){
-        if (username.equals("admin@hotmail.com") && password.equals("123")){
+    public String loginPageInfo(HttpSession session,
+                                @RequestParam(required = false,defaultValue = " ") String username,
+                                @RequestParam(required = false,defaultValue = " ") String password) {
+
+        if (username.equals("admin@hotmail.com") && password.equals("123")) {
             session.setAttribute("username", username);
             return "redirect:/user";
-        } else {
-            return "login";
         }
+        return "login";
     }
 
+    @GetMapping("/logout")
+    String logOut(HttpSession session) {
+        session.removeAttribute("username");
+
+        return "redirect:/";
+    }
+
+
+=========
     @GetMapping("/register")
     public String registerPage(){
         return "registration";
@@ -47,7 +58,6 @@ public class LoginController {
     public String startPage(){
         return "index";
     }
-
 
     @GetMapping("/profile")
     public String profilePage(){

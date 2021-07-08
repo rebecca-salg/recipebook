@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-  <header th:insert="menu :: header"></header>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="/css/bootstrap.css" rel="stylesheet">
@@ -9,10 +8,12 @@
     <title>RecipeBook</title>
 
 
-  </form>
+
 </head>
-  </div>
 <body>
+
+<header th:insert="menu :: header"></header>
+
 <div class="container" style="align-center;">
 <form  method="POST" action="/login" >
   <div class="mb-3">

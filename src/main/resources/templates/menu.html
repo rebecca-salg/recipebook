@@ -19,13 +19,11 @@
         <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="index.html">Home</a>
+                    <a th:if="${session.username == null}" class="nav-link" href="/">Home</a>
+                    <a th:if="${session.username != null}" class="nav-link" href="/user">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="login.html">Log In</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="recipes.html">Recipes</a>
+                <li class="nav-item" th:if="${session.username != null}">
+                    <a class="nav-link" href="/recipes">Recipes</a>
                 </li>
                 <!--            <li class="nav-item dropdown">-->
                 <!--                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
@@ -39,6 +37,22 @@
                 <!--                </div>-->
                 <!--            </li>-->
             </ul>
+            <form class="form-inline my-2 my-lg-0 d-flex p-2 align-items-center">
+                <div th:if="${session.username != null}" class="dropdown">
+                    <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#F8A488" class="bi bi-person-fill" viewBox="0 0 16 16">
+                            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                        </svg>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <li><a class="dropdown-item" href="/profile">Profile</a></li>
+                        <li><a class="dropdown-item" href="/logout">Log out</a></li>
+                    </ul>
+                </div>
+                <div th:if="${session.username == null}" class="navbar-light navbar-nav">
+                    <a class="nav-link" href="/login">Log In</a>
+                </div>
+                <input class="form-control mr-sm-2 m-1" type="search" style="height: 40px; min-width: 200px;"  placeholder="Search" aria-label="Search" />
             <form method="post" action="/search" class="form-inline my-2 my-lg-0 d-flex p-2 align-items-center">
                 <input class="form-control mr-sm-2 m-1" type="search" id="title" name="title" style="height: 40px; width:200px;"  placeholder="Search for recipe" aria-label="Search">
                 <button class="btn btn-primary my-2 my-sm-0" style="height: 40px" type="submit">Search</button>
