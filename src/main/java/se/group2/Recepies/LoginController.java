@@ -14,8 +14,8 @@ public class LoginController {
         return "login";
     }
     @PostMapping("/login")
-    public String loginPageInfo(@RequestParam String username, @RequestParam String password){
-        if (username.equals("admin") && password.equals("123")){
+    public String loginPageInfo(@RequestParam(required = false,defaultValue = " ") String username, @RequestParam(required = false,defaultValue = " ") String password){
+        if (username.equals("admin@hotmail.com") && password.equals("123")){
             return "";
         }
         return "login";
