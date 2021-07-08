@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,7 +10,41 @@
 </head>
 <body>
 
-<div class="container">
+<header th:insert="menu :: header"></header>
+
+<div class="container mt-5">
+    <div class="d-flex flex-column">
+        <div class="p-2">
+            <h1 th:text="${recipe.title}"></h1>
+        </div>
+        <div class="mt-5 p-2" th:switch="${recipe.category.name()}">
+            <h3 th:case="'CATEGORY_STARTER'">Category: Starter</h3>
+            <h3 th:case="'CATEGORY_MAIN'">Category: Main course</h3>
+            <h3 th:case="'CATEGORY_DESSERT'">Category: Dessert</h3>
+        </div>
+        <div class="mt-5 p-2" style="max-width: 600px;">
+            <h4>Ingredients:</h4>
+        </div>
+        <div class="p-2 bg-light" style="max-width: 600px;">
+            <table class="table">
+                <tbody>
+                <tr th:each="i : ${recipe.ingredients}">
+                    <td th:text="${i.amount} + ' ' + ${i.unit}"></td>
+                    <td th:text="${i.name}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="mt-5 p-2" style="max-width: 600px;">
+            <h4>Description:</h4>
+        </div>
+        <div class="p-2 bg-light" style="max-width: 600px;">
+            <p th:text="${recipe.description}"></p>
+        </div>
+        <div class="mt-5 p-2">
+            <a href="/recipes" class="btn btn-primary">Back</a>
+        </div>
+    </div>
 </div>
 
 <script src="/js/bootstrap.js"></script>
