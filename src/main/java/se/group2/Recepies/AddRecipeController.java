@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-public class addRecipeController {
+public class AddRecipeController {
 
     @Autowired
     RecipeRepository repository;
