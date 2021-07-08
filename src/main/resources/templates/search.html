@@ -29,7 +29,7 @@
             <div th:if="${searchResult!=null}">
                 <div th:each="recipe : ${searchResult}">
                     <th scope="row" th:text="${recipe.id}">ID</th>
-                    <td><a th:href="'/recipes/' + ${recipe.id} + '?fromSearch=true&search=' + ${title}" th:text="${recipe.title}">Title</a></td>
+                    <td><a class="link-secondary text-decoration-none" th:href="'/recipes/' + ${recipe.id} + '?fromSearch=true&search=' + ${title}" th:text="${recipe.title}">Title</a></td>
                     <div th:switch="${recipe.category.name()}">
                         <td th:case="'CATEGORY_STARTER'">Starter</td>
                         <td th:case="'CATEGORY_MAIN'">Main course</td>
