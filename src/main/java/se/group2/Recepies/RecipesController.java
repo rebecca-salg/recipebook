@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,8 +25,10 @@ public class RecipesController {
     }
 
     @GetMapping("/recipes/{id}")
-    String onGetWithID(@PathVariable long id, Model model) {
+    String onGetWithID(@PathVariable long id, Model model, @RequestParam(required = false, defaultValue = "false") boolean fromSearch, @RequestParam(required = false, defaultValue = "") String search) {
         model.addAttribute("recipe", repository.getRecipeById(id));
+        model.addAttribute("fromSearch", fromSearch);
+        model.addAttribute("search", search);
 
         return "recipe";
     }
