@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,7 +7,7 @@
     <script src="js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-
+<header th:insert="menu :: header"></header>
 <div class="container" style="relative;">
 <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)">
     <div class="row">
@@ -20,21 +20,21 @@
                     <h2>RecipeBook</h2>
                 </div>
                 <div class="mb-2">
+                    <p>Welcome to RecipeBook. A place to share your favorite recipes.</p>
+                </div>
+                <div class="mb-2">
                     <label for="exampleInputEmail1" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"style="width: 100%;">
+                    <input name ="username" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"style="width: 100%;">
                     <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                 </div>
                 <div class="mb-2">
                     <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" style="width: 100%;">
+                    <input name="password" type="password" class="form-control" id="exampleInputPassword1" style="width: 100%;">
                     <div style="padding-top:5px">
                         <button type="submit" class="btn btn-primary">Login</button> <button href="/register" type="submit" class="btn btn-primary">Register</button>
                     </div>
                 </div>
-
             </form>
-
-
         </div>
     </div>
 </div>

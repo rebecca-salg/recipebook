@@ -31,6 +31,13 @@ public class LoginController {
         if (username.equals("admin@hotmail.com") && password.equals("123")){
             return "";
         }
-        return "index";
+        return "redirect:/user";
     }
+
+    @GetMapping("/profile")
+    public String profilePage(){
+        return "profile";
+    }
+
+
 }
