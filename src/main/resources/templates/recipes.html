@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="/css/bootstrap.css">
+
+<title>My recipes</title>
+</head>
+<body>
+
+<header th:insert="menu :: header"></header>
+
+<div class="container mt-5">
+    <div class="row">
+        <h1>My Recipes</h1>
+    </div>
+    <div class="row">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Category</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="recipe : ${recipes}">
+                <th scope="row" th:text="${recipe.id}">ID</th>
+                <td><a th:href="'/recipes/' + ${recipe.id}" th:text="${recipe.title}">Title</a></td>
+                <div th:switch="${recipe.category.name()}">
+                    <td th:case="'CATEGORY_STARTER'">Starter</td>
+                    <td th:case="'CATEGORY_MAIN'">Main course</td>
+                    <td th:case="'CATEGORY_DESSERT'">Dessert</td>
+                </div>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="/js/bootstrap.js"></script>
+</body>
+</html>
