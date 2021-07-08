@@ -16,6 +16,8 @@ public class RecipeRepository {
         recipe.setTitle("Spaghetti med paprika och salladsost");
         List<Ingredient> ingredients = new ArrayList<>();
         ingredients.add(new Ingredient("Salt", "kryddmått", 1.0));
+        ingredients.add(new Ingredient("Peppar", "kryddmått", 1.5));
+        ingredients.add(new Ingredient("Fusellini", "gram", 500.0));
         recipe.setIngredients(ingredients);
         recipe.setDescription("Hacka lite. Blanda lite.\n\nKoka upp vattnet och lägg i pastan.");
         recipe.setCategory(Category.CATEGORY_MAIN);
