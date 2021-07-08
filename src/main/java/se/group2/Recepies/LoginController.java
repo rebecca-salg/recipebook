@@ -20,4 +20,17 @@ public class LoginController {
         }
         return "login";
     }
+
+    @GetMapping("/")
+    public String startPage(){
+        return "index";
+    }
+
+    @PostMapping("/")
+    public String startPageInfo(@RequestParam(required = false,defaultValue = " ") String username, @RequestParam(required = false,defaultValue = " ") String password){
+        if (username.equals("admin@hotmail.com") && password.equals("123")){
+            return "";
+        }
+        return "index";
+    }
 }
