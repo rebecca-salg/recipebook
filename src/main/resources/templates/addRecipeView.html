@@ -1,46 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="/css/bootstrap.css" rel="stylesheet" >
-    <title>AddRecipe</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <title>Title</title>
 </head>
-
 <body>
-<div class="container mx-auto">
-<form  method="POST" action="/add" >
-    <div class="container">
-    <div class="row justify-content-md-center align-items-center">
-        <div class="col-6 col-md-4">
-            <label for="title">Title</label>
-            <input class="form-control " type="text" id="title" name="title" placeholder="Title of recipe" />
+<header th:insert="menu :: header"></header>
+<form method="POST" action="/add">
+    <div class="container mt-5" style="max-width: 900px;">
+        <div class="row justify-content-md-center align-items-center">
+            <div class="mb-3 col">
+                <label for="title">Title</label>
+                <input class="form-control" type="text" id="title" name="title" placeholder="Title of recipe">
+            </div>
+            <div class="mb-3 col">
+                <label for="category">Choose category</label>
+                <select class="form-control" id="category" name="category">
+                    <option id="starter" value="CATEGORY_STARTER" name="starter">
+                        starter
+                    </option>
+                    <option id="main" value="CATEGORY_MAIN" name="main">
+                        main
+                    </option>
+                    <option id="dessert" value="CATEGORY_DESSERT" name="dessert">
+                        dessert
+                    </option>
+                </select>
+            </div>
         </div>
-        <div class="col-6 col-md-4">
-            <label for="description">Description</label>
-            <input class="form-control " id="description" type="text" name="description" placeholder="Describe recipe steps" />
+        <div class="d-flex bd-highlight justify-content-center mt-3">
+            <div class="d-flex bd-highlight justify-content-center">
+                <div class="d-flex flex-column mb-3">
+                    <label for="numberOfIngredients">Add ingredients</label>
+                    <div class="d-flex">
+                        <input class="form-control" type="number" id="numberOfIngredients"/>
+                        <button class="btn btn-primary" type="button" id="addBtn">add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex bd-highlight justify-content-center flex-wrap" id="ingredientsList">
+        </div>
+        <div class="row justify-content-md-center align-items-center mt-3">
+            <div class="mb-3">
+                <label for="description">Description</label>
+                <textarea rows="10" cols="8" class="form-control" id="description" type="text" name="description"
+                          placeholder="Describe recipe steps"></textarea>
+            </div>
+        </div>
+        <div class="d-flex p-2 align-items-center justify-content-center">
+            <button class="btn btn-primary" type="submit">Save recipe</button>
         </div>
     </div>
-    <div class="row justify-content-md-center align-items-center">
-        <div class="col-6 col-md-4">
-            <label for="category">Choose category</label>
-            <select class="form-control " id="category" name="category">
-                <option id="starter" value="CATEGORY_STARTER" name="starter" />
-                <label for="starter">starter</label>
-
-                <option id="main" value="CATEGORY_MAIN" name="main" />
-                <label for="main">main</label>
-
-                <option id="dessert" value="CATEGORY_DESSERT" name="dessert" />
-                <label for="dessert">dessert</label>
-            </select>
-        </div>
-        <div class="col-6 col-md-4 col align-self-end">
-            <button class="btn btn-primary" type="submit">Add</button>
-        </div>
-    </div>
-</div>
 </form>
+
+<div th:if="${recipes != null}">
+    <div th:each="recipe : ${recipes.recipes}">
+        <p th:text="${recipe.category}"/>
+        <p th:text="${recipe.title}"/>
+        <p th:text="${recipe.description}"/>
+        <div th:each="ingredient : ${recipe.ingredients}">
+            <p th:text="${ingredient.name}+ ', ' + ${ingredient.amount} + '' + ${ingredient.unit}"/>
+        </div>
+    </div>
 </div>
+<script>
+ const numberOfIngredients = document.getElementById("numberOfIngredients");
+ const ingredientsList = document.getElementById("ingredientsList")
+ const addBtn = document.getElementById("addBtn")
+
+addBtn.addEventListener('click', (event) => {
+    event.preventDefault()
+    for(let i=0;i<numberOfIngredients.value;i++){
+    ingredientsList.innerHTML +=
+        `
+            <div class="col-6">
+                <label for="names">Ingredient</label>
+                <input class="form-control " id="names" name="names" type="text" placeholder="Add an ingredient" />
+            </div>
+            <div class="col">
+                <label for="amount">Amount</label>
+                <input class="form-control " id="amount" name="amount" type="number" placeholder="Set an amount" />
+            </div>
+            <div class="col">
+                <label for="unit">Unit</label>
+                <input class="form-control " id="unit" name="units" type="text" placeholder="Set an unit" />
+            </div>
+        `
+    }
+})
+
+</script>
 </body>
 </html>
