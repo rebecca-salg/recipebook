@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <title>Search</title>
+</head>
+<body>
+
+<header th:insert="menu :: header"></header>
+
+
+<div class="container mt-5">
+    <div class="row">
+        <h1>Found recipes</h1>
+    </div>
+    <div class="row">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Category</th>
+            </tr>
+            </thead>
+            <tbody>
+            <div th:if="${searchResult!=null}">
+                <div th:each="recipe : ${searchResult}">
+                    <th scope="row" th:text="${recipe.id}">ID</th>
+                    <td><a class="link-secondary text-decoration-none" th:href="'/recipes/' + ${recipe.id} + '?fromSearch=true&search=' + ${title}" th:text="${recipe.title}">Title</a></td>
+                    <div th:switch="${recipe.category.name()}">
+                        <td th:case="'CATEGORY_STARTER'">Starter</td>
+                        <td th:case="'CATEGORY_MAIN'">Main course</td>
+                        <td th:case="'CATEGORY_DESSERT'">Dessert</td>
+                    </div>
+                </div>
+            </div>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

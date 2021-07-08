@@ -27,7 +27,7 @@
         <tbody>
         <tr th:each="recipe : ${recipes}">
             <th scope="row" th:text="${recipe.id}">ID</th>
-            <td><a th:href="'/recipes/' + ${recipe.id}" th:text="${recipe.title}">Title</a></td>
+            <td><a class="link-secondary text-decoration-none" th:href="'/recipes/' + ${recipe.id}" th:text="${recipe.title}">Title</a></td>
             <div th:switch="${recipe.category.name()}">
                 <td th:case="'CATEGORY_STARTER'">Starter</td>
                 <td th:case="'CATEGORY_MAIN'">Main course</td>
@@ -38,7 +38,6 @@
     </table>
     <a class="btn btn-primary" href="/add">+ Add</a>
 </div>
-
 <script src="/js/bootstrap.js"></script>
 </body>
 </html>

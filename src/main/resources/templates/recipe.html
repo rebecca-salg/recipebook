@@ -43,7 +43,11 @@
             <p th:text="${recipe.description}"></p>
         </div>
         <div class="mt-5 p-2">
-            <a href="/recipes" class="btn btn-primary">Back</a>
+            <a th:if="${fromSearch == false}" href="/recipes" class="btn btn-primary">Back</a>
+            <form th:if="${fromSearch != false}" action="/search" method="post">
+                <input type="hidden" name="title" th:attr="value=${search}">
+                <input class="btn btn-primary" type="submit" value="Back">
+            </form>
         </div>
     </div>
 </div>
