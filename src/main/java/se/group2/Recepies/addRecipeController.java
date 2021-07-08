@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-public class addRecipeController {
+public class AddRecipeController {
 
     @Autowired
     RecipeRepository repository;
@@ -33,6 +33,7 @@ public class addRecipeController {
 
         recipe1.setIngredients(ingredientList);
         recipe1.setTitle(title);
+        recipe1.setId(repository.getRecipes().size()+1);
         recipe1.setDescription(description);
         recipe1.setCategory(category);
         repository.addRecipe(recipe1);

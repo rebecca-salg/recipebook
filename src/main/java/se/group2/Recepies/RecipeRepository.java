@@ -7,7 +7,6 @@ import java.util.List;
 
 @Repository
 public class RecipeRepository {
-
     public List<Recipe> recipes = new ArrayList<>();
 
     public RecipeRepository() {
