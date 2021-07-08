@@ -1,23 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-  <header th:insert="menu :: header"></header>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="/css/bootstrap.css" rel="stylesheet">
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">
     <title>RecipeBook</title>
-
-
-  </form>
 </head>
-  </div>
 <body>
+
+<header th:insert="menu :: header"></header>
+
 <div class="container" style="align-center;">
 <form  method="POST" action="/login" >
   <div class="mb-3">
-    <label for="exampleInputEmail1" name="username" class="form-label">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <label for="exampleInputEmail1" class="form-label">Email address</label>
+    <input type="email" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
     <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
   </div>
   <div class="mb-3">

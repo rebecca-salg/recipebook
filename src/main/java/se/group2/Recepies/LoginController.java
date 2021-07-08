@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class LoginController {
 
@@ -13,13 +15,24 @@ public class LoginController {
     public String loginPage(){
         return "login";
     }
+
     @PostMapping("/login")
-    public String loginPageInfo(@RequestParam(required = false,defaultValue = " ") String username,
-                                @RequestParam(required = false,defaultValue = " ") String password){
-        if (username.equals("admin@hotmail.com") && password.equals("123")){
-            return "";
+    public String loginPageInfo(HttpSession session,
+                                @RequestParam(required = false,defaultValue = " ") String username,
+                                @RequestParam(required = false,defaultValue = " ") String password) {
+
+        if (username.equals("admin@hotmail.com") && password.equals("123")) {
+            session.setAttribute("username", username);
+            return "redirect:/user";
         }
         return "login";
+    }
+
+    @GetMapping("/logout")
+    String logOut(HttpSession session) {
+        session.removeAttribute("username");
+
+        return "redirect:/";
     }
 
     @GetMapping("/register")
@@ -42,14 +55,6 @@ public class LoginController {
     @GetMapping("/")
     public String startPage(){
         return "index";
-    }
-
-    @PostMapping("/")
-    public String startPageInfo(@RequestParam(required = false,defaultValue = " ") String username, @RequestParam(required = false,defaultValue = " ") String password){
-        if (username.equals("admin@hotmail.com") && password.equals("123")){
-            return "";
-        }
-        return "redirect:/user";
     }
 
     @GetMapping("/profile")
