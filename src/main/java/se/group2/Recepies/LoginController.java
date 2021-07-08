@@ -23,6 +23,12 @@ public class LoginController {
     }
 
     @GetMapping("/register")
+    public String registerPage(){
+        return "registration";
+    }
+
+
+    @PostMapping("/register")
     public String userInfo(@RequestParam(required = false,defaultValue = "") String email,
                            @RequestParam(required = false,defaultValue = "") String password,
                            @RequestParam(required = false,defaultValue = "") String adress,
