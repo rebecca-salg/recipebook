@@ -5,19 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="css/bootstrap.css" rel="stylesheet">
     <script src="js/bootstrap.bundle.min.js"></script>
-    <title>Title</title>
+    <title>AddRecipes</title>
 </head>
 <body>
 <header th:insert="menu :: header"></header>
-<form method="POST" action="/add">
+<form method="POST" action="/add" >
     <div class="container mt-5" style="max-width: 900px;">
-        <div class="mb-3 col">
+        <div class="mb-2 col">
             <label for="title">Title</label>
-            <input class="form-control" type="text" id="title" name="title" placeholder="Title of recipe">
+            <input class="form-control w-100" type="text" id="title" name="title" placeholder="Title of recipe">
         </div>
-        <div class="mb-3 col">
+        <div class="mb-2 col">
             <label for="category">Choose category</label>
-            <select class="form-control" id="category" name="category">
+            <select class="form-control w-100" id="category" name="category">
                 <option id="starter" value="CATEGORY_STARTER" name="starter">
                     starter
                 </option>
@@ -29,21 +29,21 @@
                 </option>
             </select>
         </div>
-        <div class="d-flex bd-highlight mt-3 mb-3">
-            <div class="d-flex flex-column mb-3">
+        <div class="d-flex bd-highlight mt-3 mb-2">
+            <div class="d-flex flex-column mb-2">
                 <label for="numberOfIngredients">Add ingredients</label>
                 <div class="d-flex">
-                    <input class="form-control" type="number" id="numberOfIngredients"/>
+                    <input class="form-control w-100" type="number" id="numberOfIngredients"/>
                     <button class="btn btn-primary" type="button" id="addBtn">add</button>
                 </div>
             </div>
         </div>
         <div class="d-flex bd-highlight justify-content-center flex-wrap" id="ingredientsList">
         </div>
-        <div class="row justify-content-md-center align-items-center mt-3">
+        <div class="row justify-content-md-center align-items-center justify-content-center mt-3">
             <div class="mb-3">
                 <label for="description">Description</label>
-                <textarea rows="10" cols="8" class="form-control" id="description" type="text" name="description"
+                <textarea rows="10" cols="8" class="form-control w-100" id="description" type="text" name="description"
                           placeholder="Describe recipe steps"></textarea>
             </div>
         </div>
@@ -64,15 +64,15 @@ addBtn.addEventListener('click', (event) => {
         `
             <div class="col-6">
                 <label for="names">Ingredient</label>
-                <input class="form-control " id="names" name="names" type="text" placeholder="Add an ingredient" />
+                <input class="form-control w-100" id="names" name="names" type="text" placeholder="Add an ingredient" />
             </div>
             <div class="col">
                 <label for="amount">Amount</label>
-                <input class="form-control " id="amount" name="amount" type="number" placeholder="Set an amount" />
+                <input class="form-control w-100" id="amount" name="amount" type="number" placeholder="Set an amount" />
             </div>
             <div class="col">
                 <label for="unit">Unit</label>
-                <input class="form-control " id="unit" name="units" type="text" placeholder="Set an unit" />
+                <input class="form-control w-100" id="unit" name="units" type="text" placeholder="Set an unit" />
             </div>
         `
     }
