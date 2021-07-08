@@ -10,7 +10,7 @@
 <body>
 <div th:fragment="header">
     <nav class="navbar navbar-expand-lg navbar-light bg-light px-2">
-        <a class="navbar-brand" href="#">RecipeBook</a>
+        <a class="navbar-brand" href="/">RecipeBook</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -52,7 +52,6 @@
                 <div th:if="${session.username == null}" class="navbar-light navbar-nav">
                     <a class="nav-link" href="/login">Log In</a>
                 </div>
-                <input class="form-control mr-sm-2 m-1" type="search" style="height: 40px; min-width: 200px;"  placeholder="Search" aria-label="Search" />
             <form method="post" action="/search" class="form-inline my-2 my-lg-0 d-flex p-2 align-items-center">
                 <input class="form-control mr-sm-2 m-1" type="search" id="title" name="title" style="height: 40px; width:200px;"  placeholder="Search for recipe" aria-label="Search">
                 <button class="btn btn-primary my-2 my-sm-0" style="height: 40px" type="submit">Search</button>
