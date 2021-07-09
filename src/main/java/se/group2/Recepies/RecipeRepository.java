@@ -42,6 +42,18 @@ public class RecipeRepository {
         recipe.setDescription("Kör in i ugnen");
         recipe.setCategory(Category.CATEGORY_DESSERT);
         addRecipe(recipe);
+
+        recipe = new Recipe();
+        recipe.setId(4L);
+        recipe.setTitle("Nässelsoppa");
+        ingredients = new ArrayList<>();
+        ingredients.add(new Ingredient("Salt", "kryddmått", 1.0));
+        ingredients.add(new Ingredient("Peppar", "kryddmått", 1.5));
+        ingredients.add(new Ingredient("Brännässlor", "knippe", 3.0));
+        recipe.setIngredients(ingredients);
+        recipe.setDescription("Hacka lite. Blanda lite.\n\nKoka upp vattnet och lägg i rubbet.");
+        recipe.setCategory(Category.CATEGORY_MAIN);
+        addRecipe(recipe);
     }
 
     public void addRecipe(Recipe recipe) {

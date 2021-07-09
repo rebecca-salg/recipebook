@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="/pictures/logo.png">
     <link href="css/bootstrap.css" rel="stylesheet">
     <script src="js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
@@ -18,10 +19,13 @@
         <div class="col row align-items-center">
             <form method="post" action="/login">
                 <div class="mb-2">
-                    <h2>RecipeBook</h2>
+                    <h1>RecipeBook</h1>
                 </div>
                 <div class="mb-2">
                     <p>Welcome to RecipeBook. A place to share your favorite recipes.</p>
+                </div>
+                <div th:if="${error} == true" class="alert alert-danger">
+                    Email or password is incorrect!
                 </div>
                 <div class="mb-2">
                     <label for="exampleInputEmail1" class="form-label">Email address</label>
@@ -32,7 +36,7 @@
                     <label for="exampleInputPassword1" class="form-label">Password</label>
                     <input name="password" type="password" class="form-control" id="exampleInputPassword1" style="width: 100%;">
                     <div style="padding-top:5px">
-                        <button type="submit" class="btn btn-primary">Login</button> <button href="/register" type="submit" class="btn btn-primary">Register</button>
+                        <button type="submit" class="btn btn-primary">Login</button> <a href="/register" class="btn btn-primary">Register</a>
                     </div>
                 </div>
             </form>

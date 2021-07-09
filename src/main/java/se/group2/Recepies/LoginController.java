@@ -20,13 +20,16 @@ public class LoginController {
     @PostMapping("/login")
     public String loginPageInfo(HttpSession session,
                                 @RequestParam(required = false,defaultValue = " ") String username,
-                                @RequestParam(required = false,defaultValue = " ") String password) {
+                                @RequestParam(required = false,defaultValue = " ") String password,
+                                Model model) {
 
         if (username.equals("admin@hotmail.com") && password.equals("123")) {
             session.setAttribute("username", username);
             return "redirect:/user";
         }
-        return "login";
+        model.addAttribute("error", true);
+
+        return "index";
     }
 
     @GetMapping("/logout")
