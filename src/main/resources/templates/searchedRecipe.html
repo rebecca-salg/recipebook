@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <link rel="icon" href="/pictures/logo.png">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <title>Title</title>
 </head>
 <body>
 
 <header th:insert="menu :: header"></header>
 
-<div class="container mt-5">
+<div class="container mt-5" style="max-width: 900px; min-height: calc(100vh - 216px);">
   <div class="d-flex flex-column">
     <div class="p-2">
       <h1 th:text="${recipe.title}"></h1>
@@ -43,7 +44,8 @@
     </div>
   </div>
 </div>
-
+<div style="height: 136px;"></div>
+<footer th:insert="footer :: footer"  class="w-100; fixed-bottom;"/>
 <script src="/js/bootstrap.js"></script>
 
 </body>
