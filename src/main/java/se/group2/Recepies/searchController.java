@@ -24,21 +24,11 @@ public class searchController {
     }
 
     @PostMapping("/search")
-    String search(Model model, @RequestParam String title){
-        List<Recipe> recipes = new ArrayList<>();
-        for(Recipe r : repository.getRecipes()) {
-            if(r.getTitle().toLowerCase().contains(title.toLowerCase())) {
-                recipes.add(r);
-            }
-        }
+    String search(Model model, @RequestParam String search){
+        List<Recipe> recipes = repository.getRecipesFromSearchString(search);
         model.addAttribute("searchResult", recipes);
-        model.addAttribute("title", title);
+        model.addAttribute("search", search);
+
         return "search";
     }
-
-    /*@PostMapping("/searchedRecipe")
-    public String set(@ModelAttribute Recipe recipe) {
-        return "redirect:/searchedRecipe";
-    }*/
-
 }

@@ -72,4 +72,15 @@ public class RecipeRepository {
 
         return null;
     }
+
+    public List<Recipe> getRecipesFromSearchString(String search) {
+        List<Recipe> results = new ArrayList<>();
+        for(Recipe r : recipes) {
+            if(r.getTitle().toLowerCase().contains(search.toLowerCase())) {
+                results.add(r);
+            }
+        }
+
+        return results;
+    }
 }
