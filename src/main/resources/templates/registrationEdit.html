@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <header th:insert="menu :: header"></header>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="/css/bootstrap.css" rel="stylesheet">
@@ -11,7 +11,7 @@
 
 </head>
 <body>
-
+<header th:insert="menu :: header"></header>
 <div class="container d-flex justify-content-center mt-5" style="max-width: 900px;">
     <div class="row justify-content-md-center align-items-center">
         <form method="POST">
@@ -53,16 +53,15 @@
                 </div>
             </div>
             <div class="form-row">
-
                 <div class="form-group">
                     <label for="inputAddress">Location</label>
                     <input type="text" class="form-control" style="width:300px;" id="inputAddress"
                            placeholder="Kungsgatan 13b..." name="city">
                 </div>
             </div>
-            <div class="form-group col-md-4">
+            <div class="form-group">
                 <label for="inputState">County</label>
-                <select id="inputState" class="form-control">
+                <select id="inputState" class="form-control w-100">
                     <option selected>Choose...</option>
                     <option>Stockholm</option>
                     <option>Göteborg</option>
