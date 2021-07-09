@@ -23,6 +23,9 @@
                 <div class="mb-2">
                     <p>Welcome to RecipeBook. A place to share your favorite recipes.</p>
                 </div>
+                <div th:if="${error} == true" class="alert alert-danger">
+                    Email or password is incorrect!
+                </div>
                 <div class="mb-2">
                     <label for="exampleInputEmail1" class="form-label">Email address</label>
                     <input name ="username" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"style="width: 100%;">
