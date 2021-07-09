@@ -4,13 +4,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <script src="js/bootstrap.bundle.min.js"></script>
     <meta charset="UTF-8">
     <title>RecipeBook</title>
 </head>
 <body>
 <header th:insert="menu :: header"></header>
-<div class="container d-flex justify-content-center mt-5" style="max-width: 900px;">
+<div class="container d-flex justify-content-center mt-5 mb-5" style="max-width: 900px; min-height: calc(100vh - 216px);">
     <div class="row justify-content-md-center align-items-center">
         <form method="POST">
             <div class="form-row">
@@ -88,5 +89,7 @@
         </form>
     </div>
 </div>
+<div style="height: 136px;"></div>
+<div th:insert="footer :: footer"  class="w-100; fixed-bottom;"/>
 </body>
 </html>

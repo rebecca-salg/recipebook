@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="stylesheet" href="/css/bootstrap.css">
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 <title>My recipes</title>
 </head>
 <body>
 
 <header th:insert="menu :: header"></header>
 
-<div class="container mt-5" style="max-width: 900px;">
+<div class="container mt-5 mb-5" style="max-width: 900px;min-height: calc(100vh - 216px);">
     <div class="row">
         <h1>Recipes</h1>
     </div>
@@ -38,6 +38,8 @@
     </table>
     <a class="btn btn-primary" href="/add">+ Add</a>
 </div>
+<div style="height: 136px;"></div>
+<div th:insert="footer :: footer"  class="w-100"/>
 <script src="/js/bootstrap.js"></script>
 </body>
 </html>

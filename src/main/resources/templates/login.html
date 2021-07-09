@@ -7,14 +7,14 @@
     <meta charset="UTF-8">
     <title>RecipeBook</title>
 
-
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
 </head>
 <body>
 
 <header th:insert="menu :: header"></header>
 
-<div class="container" style="align-center;">
+<div class="container mb-5 mt-5" style="align-center;max-width: 900px;min-height: calc(100vh - 216px);">
 <form  method="POST" action="/login" >
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Email address</label>
@@ -35,10 +35,8 @@
 <div style="padding-top:80px">
 <h3>Nyligen tillagda recept</h3>
 </div>
-<div style="padding-top:30px">
-<table>
-<thead>
-<th><div class="card" style="width: 18rem;height:220px;">
+<div  class="d-flex flex-wrap" style="padding-top:30px">
+<div class="card" style="height:220px;max-width: 250px;min-width:250px;">
   <img src="..." class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title">Mammas Fisksoppa</h5>
@@ -46,9 +44,7 @@
     <a href="/recipes/1" class="btn btn-primary">Recept</a>
   </div>
 </div>
-</th>
-<th>
-  <div class="card" style="width: 18rem;height:220px;">
+  <div class="card" style="min-width: 250px;max-width: 250px;height:220px;">
     <img src="..." class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title">Pippi's sockerdricka</h5>
@@ -56,9 +52,7 @@
       <a href="/recipes/2" class="btn btn-primary">Recept</a>
     </div>
   </div>
-</th>
-<th>
-  <div class="card" style="width: 18rem;height:220px;">
+  <div class="card" style="min-width:250px; max-width: 250px;height:220px;">
     <img src="..." class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title">Jönssonligan's Jansson</h5>
@@ -66,11 +60,10 @@
       <a href="/recipes/3" class="btn btn-primary">Recept</a>
     </div>
   </div>
-</th>
-</thead>
-</table>
 </div>
 </div>
 </div>
+<div style="height: 136px;"></div>
+<div th:insert="footer :: footer"  class="w-100"/>
 </body>
 </html>

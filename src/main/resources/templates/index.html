@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="css/bootstrap.css" rel="stylesheet">
     <script src="js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 </head>
 <body>
 <header th:insert="menu :: header"></header>
-<div class="container" style="relative;">
-<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)">
+<div class="container mt-5 mb-5" style="relative; max-width:900px;min-height: calc(100vh - 216px);">
+<div />
     <div class="row">
         <div class="col">
             <img src="pictures/startPagePic.jpg" width style="width: 100%;">
@@ -39,7 +40,7 @@
     </div>
 </div>
 </div>
-
-
+<div style="height: 136px;"></div>
+<footer th:insert="footer :: footer"  class="w-100"/>
 </body>
 </html>
