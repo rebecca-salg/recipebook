@@ -12,7 +12,7 @@
 <header th:insert="menu :: header"></header>
 
 
-<div class="container mt-5">
+<div class="container mt-5" style="max-width: 900px;">
     <div class="row">
         <h1>Found recipes</h1>
     </div>
@@ -27,7 +27,7 @@
             </thead>
             <tbody>
             <div th:if="${searchResult!=null}">
-                <div th:each="recipe : ${searchResult}">
+                <tr th:each="recipe : ${searchResult}">
                     <th scope="row" th:text="${recipe.id}">ID</th>
                     <td><a class="link-secondary text-decoration-none" th:href="'/recipes/' + ${recipe.id} + '?fromSearch=true&search=' + ${search}" th:text="${recipe.title}">Title</a></td>
                     <div th:switch="${recipe.category.name()}">
@@ -35,7 +35,7 @@
                         <td th:case="'CATEGORY_MAIN'">Main course</td>
                         <td th:case="'CATEGORY_DESSERT'">Dessert</td>
                     </div>
-                </div>
+                </tr>
             </div>
             </tbody>
         </table>
