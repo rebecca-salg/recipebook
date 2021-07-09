@@ -21,15 +21,14 @@ public class LoggedInStartController {
     @GetMapping("/user")
     String start(HttpSession session, Model model){
         List<Recipe> recentRecipes = new ArrayList<>();
-        if(session.getAttribute("username").equals("admin@hotmail.com")){
+        if(session.getAttribute("username") != null){
             for(int i = repository.getRecipes().size()-1; i >= 0; i--){
                 recentRecipes.add(repository.getRecipes().get(i));
             }
             model.addAttribute("recipes", recentRecipes);
             return "loggedInStart";
-        } else {
-            return "redirect:/login";
         }
+            return "redirect:/login";
 
     }
 }

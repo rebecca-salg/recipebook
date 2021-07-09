@@ -11,7 +11,7 @@
 <body>
 <header th:insert="menu :: header"></header>
 
-<div class="container mt-5" style="relative;">
+<div class="container d-flex flex-column align-items-center mt-5" style="max-width:900px">
         <div class="row">
             <div class="col">
                 <img src="pictures/profilePic.png" width style="width: 100%;">
@@ -21,14 +21,18 @@
                     <h4>Profile</h4>
                 </div>
                 <div class="mb-1">
-                    <p>Name:</p>
-                    <p>Placeholder Placeholder</p>
-                    <p>Email:</p>
-                    <p>placeholder@hotmail.com</p>
+                    <p th:text="'Username: ' + ${user.username}" />
+                    <p th:text="'E-mail: ' + ${user.email}" />
+                </div>
+                <div>
+                    <p th:text="'First name: ' + ${user.firstName}" />
+                    <p th:text="'Surname: ' + ${user.surName}" />
+                    <p th:text="'Age: ' + ${user.age}" />
+                    <p th:text="'City: ' + ${user.city}" />
                 </div>
             </div>
         </div>
-
+        <a href="/edit">Edit</a>
 </div>
 
 <script src="/js/bootstrap.js"></script>
