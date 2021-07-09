@@ -25,10 +25,8 @@ public class RecipesController {
     }
 
     @GetMapping("/recipes/{id}")
-    String onGetWithID(@PathVariable long id, Model model, @RequestParam(required = false, defaultValue = "false") boolean fromSearch, @RequestParam(required = false, defaultValue = "") String search) {
+    String onGetWithID(@PathVariable long id, Model model) {
         model.addAttribute("recipe", repository.getRecipeById(id));
-        model.addAttribute("fromSearch", fromSearch);
-        model.addAttribute("search", search);
 
         return "recipe";
     }
