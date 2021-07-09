@@ -23,8 +23,8 @@ public class AddRecipeController {
 
     @PostMapping("/add")
     String addRecipe(Model recipe, @RequestParam String title, @RequestParam String description, @RequestParam Category category,
-                     @RequestParam("names") List<String> names, @RequestParam("units") String[] units, @RequestParam("amount") int[] amount){
-        Recipe recipe1 = new Recipe();
+                     @RequestParam("names") List<String> names, @RequestParam("units") String[] units, @RequestParam(value = "amount", defaultValue="0") int[] amount){
+                Recipe recipe1 = new Recipe();
         List<Ingredient> ingredientList = new ArrayList<>();
 
         for(int i=0; i<names.size(); i++){

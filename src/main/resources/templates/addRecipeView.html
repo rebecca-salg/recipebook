@@ -14,7 +14,7 @@
     <div class="container mt-5 mb-5" style="max-width: 900px;min-height: calc(100vh - 216px);">
         <div class="mb-2 col">
             <label for="title">Title</label>
-            <input class="form-control w-100" type="text" id="title" name="title" placeholder="Title of recipe">
+            <input class="form-control w-100" type="text" id="title" name="title" placeholder="Title of recipe" required>
         </div>
         <div class="mb-2 col">
             <label for="category">Choose category</label>
@@ -71,7 +71,7 @@ addBtn.addEventListener('click', (event) => {
             </div>
             <div class="col">
                 <label for="amount">Amount</label>
-                <input class="form-control w-100" id="amount" name="amount" type="number" placeholder="Set an amount" />
+                <input class="form-control w-100" id="amount" name="amount" type="number" placeholder="Set an amount" value="0" />
             </div>
             <div class="col">
                 <label for="unit">Unit</label>
