@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="/css/bootstrap.css" rel="stylesheet">
     <meta charset="UTF-8">
     <title>RecipeBook</title>
-
-
 </head>
 <body>
 <header th:insert="menu :: header"></header>
@@ -81,10 +78,14 @@
                        name="description">
             </div>
 
-            <button th:if="${edit != true}" type="submit" formaction="/register" class="btn btn-primary" style="margin-top:20px;">Register</button>
-            <button th:if="${edit == true}" type="submit" formaction="/edit" class="btn btn-primary" style="margin-top:20px;">Edit</button>
-    </form>
-</div>
+            <button th:if="${edit != true}" type="submit" formaction="/register" class="btn btn-primary"
+                    style="margin-top:20px;">Register
+            </button>
+            <button th:if="${edit == true}" type="submit" formaction="/edit" class="btn btn-primary"
+                    style="margin-top:20px;">Edit
+            </button>
+        </form>
+    </div>
 </div>
 </body>
 </html>
