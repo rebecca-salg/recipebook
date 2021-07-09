@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="/pictures/logo.png">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <link href="css/bootstrap.css" rel="stylesheet">
     <script src="js/bootstrap.bundle.min.js"></script>
     <title>Search</title>
@@ -13,7 +14,7 @@
 <header th:insert="menu :: header"></header>
 
 
-<div class="container mt-5" style="max-width: 900px;">
+<div class="container mt-5" style="max-width: 900px; min-height: calc(100vh - 216px);">
     <div class="row">
         <h1>Found recipes</h1>
     </div>
@@ -42,5 +43,7 @@
         </table>
     </div>
 </div>
+<div style="height: 136px;"></div>
+<footer th:insert="footer :: footer"  class="w-100; fixed-bottom;"/>
 </body>
 </html>
