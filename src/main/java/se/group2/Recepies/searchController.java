@@ -25,7 +25,7 @@ public class searchController {
 
     @PostMapping("/search")
     String search(Model model, @RequestParam String search){
-        List<Recipe> recipes = repository.getRecipesFromSearchString(search);
+        List<Recipe> recipes = repository.findByTitleIgnoreCase(search);
         model.addAttribute("searchResult", recipes);
         model.addAttribute("search", search);
 

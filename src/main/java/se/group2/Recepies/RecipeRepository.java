@@ -1,15 +1,17 @@
 package se.group2.Recepies;
 
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository
-public class RecipeRepository {
-    public List<Recipe> recipes = new ArrayList<>();
+public interface RecipeRepository extends CrudRepository<Recipe, Long> {
 
-    public RecipeRepository() {
+    List<Recipe> findByTitleIgnoreCase(String title);
+    //public List<Recipe> recipes = new ArrayList<>();
+
+    /*public RecipeRepository() {
         // TODO remove generic recipe creations
         Recipe recipe = new Recipe();
         recipe.setId(1L);
@@ -94,5 +96,5 @@ public class RecipeRepository {
         }
 
         return results;
-    }
+    }*/
 }

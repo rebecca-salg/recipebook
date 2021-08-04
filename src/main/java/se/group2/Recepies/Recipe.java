@@ -1,11 +1,16 @@
 package se.group2.Recepies;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Recipe {
-    private long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String title;
+    @OneToMany(mappedBy = "ownerRecipe", cascade = CascadeType.ALL)
     private List<Ingredient> ingredients = new ArrayList<>();
     private String description;
     private Category category;
@@ -14,11 +19,11 @@ public class Recipe {
         ingredients.add(ingredient);
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -46,9 +51,7 @@ public class Recipe {
         this.description = description;
     }
 
-    public Category getCategory() {
-        return category;
-    }
+    public Category getCategory() { return category; }
 
     public void setCategory(Category category) {
         this.category = category;
