@@ -1,16 +1,33 @@
 package se.group2.Recepies;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class User {
 
-    private String username = "MegaMan";
-    private String firstName = "Mega";
-    private String surName = "McMan";
-    private String email = "MegaMan4ever@gmail.com";
-    private String description = "I am a man that is not mini, I am mega.";
-    private String city = "Åmål";
-    private String county = "Västra Götaland";
-    private String zipCode = "234 23";
-    private String age = "34";
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String username;
+    private String password;
+    private String firstName;
+    private String surName;
+    private String email;
+    private String description;
+    private String city;
+    private String county;
+    private String zipCode;
+    private String age;
+
+    public User() {
+    }
+
+    public Long getId() {
+        return id;
+    }
 
     public String getUsername() {
         return username;
@@ -18,6 +35,10 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public String getFirstName() {
