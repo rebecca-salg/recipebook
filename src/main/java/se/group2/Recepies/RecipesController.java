@@ -19,14 +19,14 @@ public class RecipesController {
 
     @GetMapping("/recipes")
     String onGet(Model model) {
-        model.addAttribute("recipes", repository.recipes);
+        model.addAttribute("recipes", (List<Recipe>) repository.findAll());
 
         return "recipes";
     }
 
     @GetMapping("/recipes/{id}")
     String onGetWithID(@PathVariable long id, Model model) {
-        model.addAttribute("recipe", repository.getRecipeById(id));
+        model.addAttribute("recipe", repository.findById(id).orElse(null));
 
         return "recipe";
     }

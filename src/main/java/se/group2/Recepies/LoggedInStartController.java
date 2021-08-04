@@ -19,11 +19,12 @@ public class LoggedInStartController {
     RecipeRepository repository;
 
     @GetMapping("/user")
-    String start(HttpSession session, Model model){
+    String start(HttpSession session, Model model) {
         List<Recipe> recentRecipes = new ArrayList<>();
-        if(session.getAttribute("username") != null){
-            for(int i = repository.getRecipes().size()-1; i >= 0; i--){
-                recentRecipes.add(repository.getRecipes().get(i));
+        if(session.getAttribute("username") != null) {
+            List<Recipe> recipes = (List<Recipe>) repository.findAll();
+            for(int i = recipes.size() - 1; i >= 0; i--) {
+                recentRecipes.add(recipes.get(i));
             }
             model.addAttribute("recipes", recentRecipes);
             return "loggedInStart";
