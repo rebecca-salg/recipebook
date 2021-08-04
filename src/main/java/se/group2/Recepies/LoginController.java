@@ -1,19 +1,25 @@
 package se.group2.Recepies;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 public class LoginController {
 
+    @Autowired
+    private UserRepository userRepository;
+
     @GetMapping("/login")
-    public String loginPage() {
+    public String loginPage(){
         return "login";
     }
 
@@ -48,31 +54,12 @@ public class LoginController {
 
 
     @PostMapping("/register")
-    public String userInfo(HttpSession session,
-                           Model model,
-                           @RequestParam(required = false, defaultValue = "") String email,
-                           @RequestParam(required = false, defaultValue = "") String password,
-                           @RequestParam(required = false, defaultValue = "") String city,
-                           @RequestParam(required = false, defaultValue = "") String county,
-                           @RequestParam(required = false, defaultValue = "") String zipCode,
-                           @RequestParam(required = false, defaultValue = "") String age,
-                           @RequestParam(required = false, defaultValue = "") String fname,
-                           @RequestParam(required = false, defaultValue = "") String lname,
-                           @RequestParam(required = false, defaultValue = "") String description
-    ) {
+    public String userInfo(@ModelAttribute User user, HttpSession session) {
 
-        User u = new User();
-        u.setFirstName(fname);
-        u.setSurName(lname);
-        u.setCity(city);
-        u.setCounty(county);
-        u.setZipCode(zipCode);
-        u.setAge(age);
-        u.setDescription(description);
-        u.setEmail(email);
 
-        session.setAttribute("user", u);
-        model.addAttribute("user", session.getAttribute("user"));
+        userRepository.save(user);
+
+        session.setAttribute("user", user);
 
         return "redirect:/profile";
     }
