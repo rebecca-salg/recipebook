@@ -1,0 +1,1 @@
+INSERT INTO RECIPE (CATEGORY, DESCRIPTION, TITLE) VALUES (1, 'Cook it like its hot!', 'Spaghetti med paprika och salladsost');
