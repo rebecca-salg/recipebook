@@ -18,7 +18,7 @@ public class LoginController {
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping("/login")
+    @GetMapping("/start")
     public String loginPage(HttpSession session){
         return "loggedInStart";
     }
@@ -33,7 +33,7 @@ public class LoginController {
 
         for (User user : users ) {
             if (username.equals(user.getEmail()) && password.equals(user.getPassword())) {
-                session.setAttribute("user", username);
+                session.setAttribute("user", user);
                 return "redirect:/user";
             }
         }
@@ -90,49 +90,11 @@ public class LoginController {
     }
 
     @PostMapping("/edit")
-    public String userData(HttpSession session,
-                           @RequestParam(required = false) String email,
-                           @RequestParam(required = false) String city,
-                           @RequestParam(required = false) String county,
-                           @RequestParam(required = false) String zipCode,
-                           @RequestParam(required = false) String age,
-                           @RequestParam(required = false) String fname,
-                           @RequestParam(required = false) String lname,
-                          @RequestParam(required = false) String description
-    ){
-        User u;
-        if(session.getAttribute("user") == null) {
-            u = new User();
-        } else {
-            u = (User)session.getAttribute("user");
-        }
-        if(fname != "") {
-            u.setFirstName(fname);
-        }
-        if(lname != "") {
-            u.setSurName(lname);
-        }
-        if(city != "") {
-            u.setCity(city);
-        }
-        if(county != "") {
-            u.setCounty(county);
-        }
-        if(zipCode != "") {
-            u.setZipCode(zipCode);
-        }
-        if(age != "") {
-            u.setAge(age);
-        }
-        if(description != "") {
-            u.setDescription(description);
-        }
-        if(email != "") {
-            u.setEmail(email);
-        }
+    public String userData(@ModelAttribute User username, HttpSession session) {
 
-        session.setAttribute("user", u);
+        userRepository.save(username);
 
+        session.setAttribute("user", username);
         return "redirect:/profile";
     }
 
