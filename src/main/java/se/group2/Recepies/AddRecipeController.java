@@ -23,18 +23,19 @@ public class AddRecipeController {
 
     @PostMapping("/add")
     String addRecipe(Model recipe, @RequestParam String title, @RequestParam String description, @RequestParam Category category,
-                     @RequestParam("names") List<String> names, @RequestParam("units") String[] units, @RequestParam(value = "amount", defaultValue="0") int[] amount){
-                Recipe recipe1 = new Recipe();
-        List<Ingredient> ingredientList = new ArrayList<>();
-
-        for(int i=0; i<names.size(); i++){
-            ingredientList.add(new Ingredient(names.get(i), units[i], amount[i]));
-        }
-
-        recipe1.setIngredients(ingredientList);
+                     @RequestParam("names") List<String> names, @RequestParam("units") String[] units, @RequestParam(value = "amount", defaultValue="0") int[] amount) {
+        Recipe recipe1 = new Recipe();
         recipe1.setTitle(title);
         recipe1.setDescription(description);
         recipe1.setCategory(category);
+        repository.save(recipe1);
+
+        List<Ingredient> ingredientList = recipe1.getIngredients();
+
+        for(int i=0; i<names.size(); i++){
+            ingredientList.add(new Ingredient(names.get(i), units[i], amount[i], recipe1));
+        }
+
         repository.save(recipe1);
         recipe.addAttribute("recipes", repository);
         return "addRecipeView";
