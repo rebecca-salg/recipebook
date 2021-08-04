@@ -55,7 +55,7 @@ public class LoginController {
 
     @PostMapping("/register")
     public String userInfo(@ModelAttribute User user, HttpSession session) {
-        {
+
 
         userRepository.save(user);
 

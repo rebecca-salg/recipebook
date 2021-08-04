@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class RecipeCollectionRepository {
 
 
-    @Id
+  /*  @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @OneToOne(fetch = FetchType.LAZY)
@@ -16,7 +16,7 @@ public class RecipeCollectionRepository {
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "recipe_Id")
     private Long recipe_Id;
-
+*/
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
