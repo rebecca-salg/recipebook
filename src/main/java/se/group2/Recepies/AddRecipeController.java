@@ -35,7 +35,8 @@ public class AddRecipeController {
         recipe1.setTitle(title);
         recipe1.setDescription(description);
         recipe1.setCategory(category);
-        repository.save(recipe1);
+        repository.addRecipe(recipe1);
+        recipe1.setId(repository.getRecipes().size()+1);
         recipe.addAttribute("recipes", repository);
         return "addRecipeView";
     }
