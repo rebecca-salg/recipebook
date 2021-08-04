@@ -21,15 +21,15 @@
         <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a th:if="${session.username == null}" class="nav-link" href="/">Home</a>
-                    <a th:if="${session.username != null}" class="nav-link" href="/user">Home</a>
+                    <a th:if="${session.user == null}" class="nav-link" href="/">Home</a>
+                    <a th:if="${session.user != null}" class="nav-link" href="/login">Home</a>
                 </li>
-                <li class="nav-item" th:if="${session.username != null}">
+                <li class="nav-item" th:if="${session.user != null}">
                     <a class="nav-link" href="/recipes">Recipes</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0 d-flex p-2 align-items-center" action="/search" method="post">
-                <div th:if="${session.username != null}" class="dropdown">
+                <div th:if="${session.user != null}" class="dropdown">
                     <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#F8A488" class="bi bi-person-fill" viewBox="0 0 16 16">
                             <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
@@ -40,8 +40,8 @@
                         <li><a class="dropdown-item" href="/logout">Log out</a></li>
                     </ul>
                 </div>
-                <input th:if="${session.username != null}" name="search" class="form-control mr-sm-2 m-1" type="search" style="height: 40px; min-width: 200px;" placeholder="Search" aria-label="Search" />
-                <button th:if="${session.username != null}" class="btn btn-primary my-2 my-sm-0" style="height: 40px" type="submit">Search</button>
+                <input th:if="${session.user != null}" name="search" class="form-control mr-sm-2 m-1" type="search" style="height: 40px; min-width: 200px;" placeholder="Search" aria-label="Search" />
+                <button th:if="${session.user != null}" class="btn btn-primary my-2 my-sm-0" style="height: 40px" type="submit">Search</button>
             </form>
         </div>
     </nav>

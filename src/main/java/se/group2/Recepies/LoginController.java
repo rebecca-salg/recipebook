@@ -19,8 +19,8 @@ public class LoginController {
     private UserRepository userRepository;
 
     @GetMapping("/login")
-    public String loginPage(){
-        return "login";
+    public String loginPage(HttpSession session){
+        return "loggedInStart";
     }
 
     @PostMapping("/login")
@@ -29,10 +29,15 @@ public class LoginController {
                                 @RequestParam(required = false,defaultValue = " ") String password,
                                 Model model) {
 
-        if (username.equals("admin@hotmail.com") && password.equals("123")) {
-            session.setAttribute("username", username);
-            return "redirect:/user";
+        List<User> users = (List) userRepository.findAll();
+
+        for (User user : users ) {
+            if (username.equals(user.getEmail()) && password.equals(user.getPassword())) {
+                session.setAttribute("user", username);
+                return "redirect:/user";
+            }
         }
+
         model.addAttribute("error", true);
 
         return "index";
@@ -40,7 +45,7 @@ public class LoginController {
 
     @GetMapping("/logout")
     String logOut(HttpSession session) {
-        session.removeAttribute("username");
+        session.removeAttribute("user");
 
         return "redirect:/";
     }
@@ -53,11 +58,11 @@ public class LoginController {
     }
 
     @PostMapping("/register")
-    public String userInfo(@ModelAttribute User user, HttpSession session) {
+    public String userInfo(@ModelAttribute User username, HttpSession session) {
 
-        userRepository.save(user);
+        userRepository.save(username);
 
-        session.setAttribute("user", user);
+        session.setAttribute("user", username);
 
         return "redirect:/profile";
     }
