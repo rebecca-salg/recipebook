@@ -1,9 +1,6 @@
 package se.group2.Recepies;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Ingredient {
@@ -14,6 +11,8 @@ public class Ingredient {
     private String name;
     private String unit;
     private double amount;
+    @ManyToOne
+    private Recipe ownerRecipe;
 
     public Ingredient(){
 
@@ -23,6 +22,14 @@ public class Ingredient {
         this.name = name;
         this.unit = unit;
         this.amount = amount;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -35,5 +42,13 @@ public class Ingredient {
 
     public double getAmount() {
         return amount;
+    }
+
+    public Recipe getOwnerRecipe() {
+        return ownerRecipe;
+    }
+
+    public void setOwnerRecipe(Recipe ownerRecipe) {
+        this.ownerRecipe = ownerRecipe;
     }
 }

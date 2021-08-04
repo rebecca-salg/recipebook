@@ -19,11 +19,16 @@ class RecepiesApplicationTests {
 
 	@Test
 	void testSearch() {
-		List<Recipe> results = repository.getRecipesFromSearchString("spaghetti");
+		List<Recipe> results = repository.findByTitleIgnoreCase("spaghetti");
 		Assert.hasText("spaghetti", results.get(0).getTitle());
 
-		results = repository.getRecipesFromSearchString("rabarber");
+		results = repository.findByTitleIgnoreCase("rabarber");
 		Assert.isTrue("Rabarberpaj med sås".equals(results.get(0).getTitle()), "Checking that title matches");
 	}
 
+	@Test
+	void testAddRecipe() {
+		Recipe recipe = new Recipe();
+		repository.save(recipe);
+	}
 }
