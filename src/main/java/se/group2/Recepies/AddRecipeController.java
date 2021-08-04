@@ -17,17 +17,21 @@ public class AddRecipeController {
     RecipeRepository repository;
 
     @GetMapping("/add")
-    String add(){
+    String add() {
         return "addRecipeView";
     }
 
     @PostMapping("/add")
-    String addRecipe(Model recipe, @RequestParam String title, @RequestParam String description, @RequestParam Category category,
-                     @RequestParam("names") List<String> names, @RequestParam("units") String[] units, @RequestParam(value = "amount", defaultValue="0") int[] amount){
-                Recipe recipe1 = new Recipe();
+    String addRecipe(Model recipe, @RequestParam String title,
+                     @RequestParam String description,
+                     @RequestParam Category category,
+                     @RequestParam("names") List<String> names,
+                     @RequestParam("units") String[] units,
+                     @RequestParam(value = "amount", defaultValue = "0") int[] amount) {
+        Recipe recipe1 = new Recipe();
         List<Ingredient> ingredientList = new ArrayList<>();
 
-        for(int i=0; i<names.size(); i++){
+        for (int i = 0; i < names.size(); i++) {
             ingredientList.add(new Ingredient(names.get(i), units[i], amount[i]));
         }
 
@@ -36,7 +40,7 @@ public class AddRecipeController {
         recipe1.setDescription(description);
         recipe1.setCategory(category);
         repository.addRecipe(recipe1);
-        recipe1.setId(repository.getRecipes().size()+1);
+        recipe1.setId(repository.getRecipes().size() + 1);
         recipe.addAttribute("recipes", repository);
         return "addRecipeView";
     }

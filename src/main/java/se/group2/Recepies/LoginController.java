@@ -13,14 +13,14 @@ import javax.servlet.http.HttpSession;
 public class LoginController {
 
     @GetMapping("/login")
-    public String loginPage(){
+    public String loginPage() {
         return "login";
     }
 
     @PostMapping("/login")
     public String loginPageInfo(HttpSession session,
-                                @RequestParam(required = false,defaultValue = " ") String username,
-                                @RequestParam(required = false,defaultValue = " ") String password,
+                                @RequestParam(required = false, defaultValue = " ") String username,
+                                @RequestParam(required = false, defaultValue = " ") String password,
                                 Model model) {
 
         if (username.equals("admin@hotmail.com") && password.equals("123")) {
@@ -40,7 +40,7 @@ public class LoginController {
     }
 
     @GetMapping("/register")
-    public String registerPage(Model model){
+    public String registerPage(Model model) {
 
         model.addAttribute("edit", false);
         return "registrationEdit";
@@ -50,16 +50,16 @@ public class LoginController {
     @PostMapping("/register")
     public String userInfo(HttpSession session,
                            Model model,
-                           @RequestParam(required = false,defaultValue = "") String email,
-                           @RequestParam(required = false,defaultValue = "") String password,
-                           @RequestParam(required = false,defaultValue = "") String city,
-                           @RequestParam(required = false,defaultValue = "") String county,
-                           @RequestParam(required = false,defaultValue = "") String zipCode,
-                           @RequestParam(required = false,defaultValue = "") String age,
-                           @RequestParam(required = false,defaultValue = "") String fname,
-                           @RequestParam(required = false,defaultValue = "") String lname,
-                           @RequestParam(required = false,defaultValue = "") String description
-                           ){
+                           @RequestParam(required = false, defaultValue = "") String email,
+                           @RequestParam(required = false, defaultValue = "") String password,
+                           @RequestParam(required = false, defaultValue = "") String city,
+                           @RequestParam(required = false, defaultValue = "") String county,
+                           @RequestParam(required = false, defaultValue = "") String zipCode,
+                           @RequestParam(required = false, defaultValue = "") String age,
+                           @RequestParam(required = false, defaultValue = "") String fname,
+                           @RequestParam(required = false, defaultValue = "") String lname,
+                           @RequestParam(required = false, defaultValue = "") String description
+    ) {
 
         User u = new User();
         u.setFirstName(fname);
@@ -78,23 +78,22 @@ public class LoginController {
     }
 
     @GetMapping("/")
-    public String startPage(){
+    public String startPage() {
         return "index";
     }
 
     @GetMapping("/profile")
-    public String profilePage(Model model, HttpSession session){
-    if(session.getAttribute("user")!= null) {
-        model.addAttribute("user", session.getAttribute("user"));
-    } else {
-        model.addAttribute("user", new User());
-    }
+    public String profilePage(Model model, HttpSession session) {
+        if (session.getAttribute("user") != null) {
+            model.addAttribute("user", session.getAttribute("user"));
+        } else {
+            model.addAttribute("user", new User());
+        }
         return "profile";
     }
 
     @GetMapping("/edit")
-    public String editUser(Model model)
-    {
+    public String editUser(Model model) {
         model.addAttribute("edit", true);
         return "registrationEdit";
     }
@@ -108,36 +107,36 @@ public class LoginController {
                            @RequestParam(required = false) String age,
                            @RequestParam(required = false) String fname,
                            @RequestParam(required = false) String lname,
-                          @RequestParam(required = false) String description
-    ){
+                           @RequestParam(required = false) String description
+    ) {
         User u;
-        if(session.getAttribute("user") == null) {
+        if (session.getAttribute("user") == null) {
             u = new User();
         } else {
-            u = (User)session.getAttribute("user");
+            u = (User) session.getAttribute("user");
         }
-        if(fname != "") {
+        if (fname != "") {
             u.setFirstName(fname);
         }
-        if(lname != "") {
+        if (lname != "") {
             u.setSurName(lname);
         }
-        if(city != "") {
+        if (city != "") {
             u.setCity(city);
         }
-        if(county != "") {
+        if (county != "") {
             u.setCounty(county);
         }
-        if(zipCode != "") {
+        if (zipCode != "") {
             u.setZipCode(zipCode);
         }
-        if(age != "") {
+        if (age != "") {
             u.setAge(age);
         }
-        if(description != "") {
+        if (description != "") {
             u.setDescription(description);
         }
-        if(email != "") {
+        if (email != "") {
             u.setEmail(email);
         }
 
