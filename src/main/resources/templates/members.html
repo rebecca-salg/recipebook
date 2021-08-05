@@ -26,13 +26,12 @@
     </thead>
     <tbody>
     <tr th:each="user : ${users}">
-      <th th:href="'/profile?userId=' +${user.id}" scope="row" th:text="${user.username}"></th>
+      <th><a class="link-secondary text-decoration-none" th:href="'/profile?userId=' +${user.id}" scope="row" th:text="${user.username}"></a></th>
       <td><a class="link-secondary text-decoration-none" th:href="'/profile?userId=' +${user.id}" th:text="${user.firstName}"></a></td>
       <td class="link-secondary text-decoration-none" th:text="${user.city}"></td>
     </tr>
     </tbody>
   </table>
-  <a th:if="${followUser == null}" class="btn btn-primary" href="/add">+ Add</a>
 </div>
 <div style="height: 136px;"></div>
 <div th:insert="footer :: footer"  class="w-100"/>
