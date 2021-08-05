@@ -27,9 +27,7 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String loginPageInfo(HttpSession session, Model model,
-                                @Valid @ModelAttribute("login") Login login,
-                                BindingResult result) {
+    public String loginPageInfo(HttpSession session, Model model, @Valid Login login, BindingResult result) {
 
         if(result.hasErrors()) {
             return "index";
