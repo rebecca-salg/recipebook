@@ -19,12 +19,18 @@ public class RecipesController {
     @Autowired
     RecipeCollectionRepository recipeCollectionRepository;
     @Autowired
-    FollowerCollectionRepository followerCollectionRepository;
+    UserRepository userRepository;
 
     @GetMapping("/recipes")
-    String onGet(Model model, HttpSession session) {
+    String onGet(Model model, HttpSession session, @RequestParam(required = false) Long userId) {
+        User user;
+        if (userId == null) {
+            user = (User) session.getAttribute("user");
+        } else {
+            user = (User) userRepository.findById(userId).get();
+            model.addAttribute("followUser", user);
+        }
 
-        User user = (User) session.getAttribute("user");
         List<RecipeCollection> collections = recipeCollectionRepository.findAllByUserId(user.getId());
         List<Recipe> recipes = new ArrayList<>();
 
@@ -32,18 +38,6 @@ public class RecipesController {
             recipes.add(collection.getRecipe());
         }
         model.addAttribute("recipes",recipes);
-
-
-        List<FollowerCollection> followerCollections = followerCollectionRepository.findAllByUserId(user.getId());
-        List<Recipe> followingRecipes = new ArrayList<>();
-
-        for(FollowerCollection collection : followerCollections){
-            collections = recipeCollectionRepository.findAllByUserId(collection.getFollow().getId());
-            for(RecipeCollection recipeCollection : collections){
-                followingRecipes.add(recipeCollection.getRecipe());
-            }
-        }
-        model.addAttribute("followingRecipes",followingRecipes);
 
         return "recipes";
     }
