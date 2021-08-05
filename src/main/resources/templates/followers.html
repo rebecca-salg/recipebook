@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="/pictures/logo.png">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <title>My recipes</title>
+</head>
+<body>
+
+<header th:insert="menu :: header"></header>
+
+<div class="container mt-5 mb-5" style="max-width: 900px;min-height: calc(100vh - 216px);">
+    <div class="row">
+        <h1>Following</h1>
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Username</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="friend : ${followers}">
+            <td><p class="mb-0" th:text="${friend.username}">Title</p></td>
+            <td><a class="link-secondary text-decoration-none" th:href="'/recipes?userId=' + ${friend.id}">Recipes</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div style="height: 136px;"></div>
+<div th:insert="footer :: footer"  class="w-100"/>
+<script src="/js/bootstrap.js"></script>
+</body>
+</html>
