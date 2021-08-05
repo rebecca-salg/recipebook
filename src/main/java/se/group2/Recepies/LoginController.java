@@ -1,14 +1,10 @@
 package se.group2.Recepies;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -19,6 +15,9 @@ public class LoginController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    FollowerCollectionRepository followerCollectionRepository;
 
     @GetMapping("/")
     public String startPage(Model model){
@@ -67,12 +66,22 @@ public class LoginController {
     }
 
     @GetMapping("/profile")
-    public String profilePage(Model model, HttpSession session){
-    if(session.getAttribute("user")!= null) {
-        model.addAttribute("user", session.getAttribute("user"));
-    } else {
-        model.addAttribute("user", new User());
-    }
+    public String profilePage(Model model, HttpSession session, @RequestParam(required = false) Long userId) {
+        if (session.getAttribute("user")== null) {
+            return "redirect:/";
+        }
+
+        if (userId == null) {
+            if(session.getAttribute("user")!= null) {
+                model.addAttribute("user", session.getAttribute("user"));
+            } else {
+                model.addAttribute("user", new User());
+            }
+        } else {
+            User user = (User) userRepository.findById(userId).get();
+            model.addAttribute("foreignUser", user);
+        }
+
         return "profile";
     }
 
@@ -99,5 +108,16 @@ public class LoginController {
         return "redirect:/profile";
     }
 
+    @GetMapping("/followUser/{id}")
+    public String followUser(HttpSession session, @PathVariable Long id) {
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            return "redirect:/";
+        }
 
+        User foreignUser = (User) userRepository.findById(id).get();
+        followerCollectionRepository.save(new FollowerCollection(user, foreignUser));
+
+        return "redirect:/user?added=true";
+    }
 }

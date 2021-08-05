@@ -22,8 +22,12 @@ public class LoggedInStartController {
     RecipeCollectionRepository recipeCollectionRepository;
 
     @GetMapping("/user")
-    String start(HttpSession session, Model model) {
+    String start(HttpSession session, Model model, @RequestParam(required = false) boolean added) {
         List<Recipe> recentRecipes = new ArrayList<>();
+
+        if (added) {
+            model.addAttribute("added", added);
+        }
 
         if(session.getAttribute("user") != null) {
             User user = (User) session.getAttribute("user");

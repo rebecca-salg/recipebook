@@ -38,6 +38,9 @@
         </tbody>
     </table>
     <a th:if="${followUser == null}" class="btn btn-primary" href="/add">+ Add</a>
+    <div class="mt-5 p-2">
+        <button th:if="${followUser != null}" class="btn btn-primary" onclick="history.go(-1);">Back</button>
+    </div>
 </div>
 <div style="height: 136px;"></div>
 <div th:insert="footer :: footer"  class="w-100"/>

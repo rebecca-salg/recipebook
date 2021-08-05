@@ -12,27 +12,43 @@
 <header th:insert="menu :: header"></header>
 
 <div class="container d-flex flex-column align-items-center mt-5 mb-5" style="max-width:900px; min-height: calc(100vh - 216px);">
-        <div class="row">
-            <div class="col">
-                <img src="pictures/profilePic.png" width style="width: 100%;">
+    <div class="row">
+        <div class="col">
+            <img src="pictures/profilePic.png" width style="width: 100%;">
+        </div>
+        <div th:if="${foreignUser == null}" class="col-10">
+            <div class="mb-2">
+                <h1>Profile</h1>
             </div>
-            <div class="col-10">
-                <div class="mb-2">
-                    <h1>Profile</h1>
-                </div>
-                <div class="mb-1">
-                    <p th:text="'Username: ' + ${user.username}" />
-                    <p th:text="'E-mail: ' + ${user.email}" />
-                </div>
-                <div>
-                    <p th:text="'First name: ' + ${user.firstName}" />
-                    <p th:text="'Surname: ' + ${user.surName}" />
-                    <p th:text="'Age: ' + ${user.age}" />
-                    <p th:text="'City: ' + ${user.city}" />
-                </div>
+            <div class="mb-1">
+                <p th:text="'Username: ' + ${user.username}" />
+                <p th:text="'E-mail: ' + ${user.email}" />
+            </div>
+            <div>
+                <p th:text="'First name: ' + ${user.firstName}" />
+                <p th:text="'Surname: ' + ${user.surName}" />
+                <p th:text="'Age: ' + ${user.age}" />
+                <p th:text="'City: ' + ${user.city}" />
             </div>
         </div>
-        <a href="/edit" class="btn btn-primary">Edit</a>
+        <div th:if="${foreignUser != null}" class="col-10">
+            <div class="mb-2">
+                <h1>User profile</h1>
+            </div>
+            <div class="mb-1">
+                <p th:text="'Username: ' + ${foreignUser.username}" />
+                <p th:text="'E-mail: ' + ${foreignUser.email}" />
+            </div>
+            <div>
+                <p th:text="'First name: ' + ${foreignUser.firstName}" />
+                <p th:text="'Surname: ' + ${foreignUser.surName}" />
+                <p th:text="'Age: ' + ${foreignUser.age}" />
+                <p th:text="'City: ' + ${foreignUser.city}" />
+            </div>
+        </div>
+    </div>
+    <a th:if="${foreignUser == null}" href="/edit" class="btn btn-primary">Edit</a>
+    <a th:if="${foreignUser != null}" th:href="'/followUser/' + ${foreignUser.id}" class="btn btn-primary">Follow</a>
 </div>
 <div style="height: 136px;"></div>
 <div th:insert="footer :: footer"  class="w-100"/>

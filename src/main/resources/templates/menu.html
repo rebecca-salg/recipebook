@@ -28,6 +28,12 @@
                 <li class="nav-item" th:if="${session.user != null}">
                     <a class="nav-link" href="/recipes">Recipes</a>
                 </li>
+                <li class="nav-item" th:if="${session.user != null}">
+                    <a class="nav-link" href="/members">Members</a>
+                </li>
+                <li class="nav-item" th:if="${session.user != null}">
+                    <a class="nav-link" href="/followers">Follows</a>
+                </li>
             </ul>
             <form class="form-inline my-2 my-lg-0 d-flex p-2 align-items-center" action="/search" method="post">
                 <div th:if="${session.user != null}" class="dropdown">
