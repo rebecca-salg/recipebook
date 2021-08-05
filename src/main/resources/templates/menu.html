@@ -13,7 +13,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light px-2">
         <img src="/pictures/logo.png" height="32" width="32" style="margin: 10px;">
         <a th:if="${session.user == null}" class="navbar-brand" href="/" style="color: #5AA897">RecipeBook</a>
-        <a th:if="${session.user != null}" class="navbar-brand" href="/start" style="color: #5AA897">RecipeBook</a>
+        <a th:if="${session.user != null}" class="navbar-brand" href="/user" style="color: #5AA897">RecipeBook</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -23,7 +23,7 @@
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                     <a th:if="${session.user == null}" class="nav-link" href="/">Home</a>
-                    <a th:if="${session.user != null}" class="nav-link" href="/start">Home</a>
+                    <a th:if="${session.user != null}" class="nav-link" href="/user">Home</a>
                 </li>
                 <li class="nav-item" th:if="${session.user != null}">
                     <a class="nav-link" href="/recipes">Recipes</a>
