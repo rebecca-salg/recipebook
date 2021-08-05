@@ -18,6 +18,8 @@ public class RecipesController {
     RecipeRepository repository;
     @Autowired
     RecipeCollectionRepository recipeCollectionRepository;
+    @Autowired
+    FollowerCollectionRepository followerCollectionRepository;
 
     @GetMapping("/recipes")
     String onGet(Model model, HttpSession session) {
@@ -30,6 +32,19 @@ public class RecipesController {
             recipes.add(collection.getRecipe());
         }
         model.addAttribute("recipes",recipes);
+
+
+        List<FollowerCollection> followerCollections = followerCollectionRepository.findAllByUserId(user.getId());
+        List<Recipe> followingRecipes = new ArrayList<>();
+
+        for(FollowerCollection collection : followerCollections){
+            collections = recipeCollectionRepository.findAllByUserId(collection.getFollow().getId());
+            for(RecipeCollection recipeCollection : collections){
+                followingRecipes.add(recipeCollection.getRecipe());
+            }
+        }
+        model.addAttribute("followingRecipes",followingRecipes);
+
         return "recipes";
     }
 
