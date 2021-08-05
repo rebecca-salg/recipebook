@@ -17,7 +17,7 @@
             <img src="pictures/startPagePic.jpg" width style="width: 100%;">
         </div>
         <div class="col row align-items-center">
-            <form method="post" action="/login">
+            <form method="post" action="/login" th:object="${login}">
                 <div class="mb-2">
                     <h1>RecipeBook</h1>
                 </div>
@@ -25,16 +25,17 @@
                     <p>Welcome to RecipeBook. A place to share your favorite recipes.</p>
                 </div>
                 <div th:if="${error} == true" class="alert alert-danger">
-                    Email or password is incorrect!
+                    Email or password does not exist!
                 </div>
                 <div class="mb-2">
-                    <label for="exampleInputEmail1" class="form-label">Email address</label>
-                    <input name ="username" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"style="width: 100%;">
-                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                    <label for="InputEmail" class="form-label">Email address</label>
+                    <input type="text" th:field="*{email}" class="form-control" id="InputEmail" style="width: 100%;" th:errorclass="is-invalid">
+                    <span th:if="${#fields.hasErrors('email')}" class="invalid-feedback">Email is not filled in correctly</span>
                 </div>
                 <div class="mb-2">
-                    <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input name="password" type="password" class="form-control" id="exampleInputPassword1" style="width: 100%;">
+                    <label for="InputPassword" class="form-label">Email address</label>
+                    <input type="password" th:field="*{password}" class="form-control" id="InputPassword" style="width: 100%;" th:errorclass="is-invalid">
+                    <span th:if="${#fields.hasErrors('password')}" class="invalid-feedback">Password needs to be between 3 and 15 characters!</span>
                     <div style="padding-top:5px">
                         <button type="submit" class="btn btn-primary">Login</button> <a href="/register" class="btn btn-primary">Register</a>
                     </div>
