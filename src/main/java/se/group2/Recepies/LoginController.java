@@ -83,8 +83,14 @@ public class LoginController {
                 model.addAttribute("user", new User());
             }
         } else {
-            User user = (User) userRepository.findById(userId).get();
-            model.addAttribute("foreignUser", user);
+            User user = (User) session.getAttribute("user");
+            User foreignUser = (User) userRepository.findById(userId).get();
+            model.addAttribute("foreignUser", foreignUser);
+
+            FollowerCollection followerCollection = followerCollectionRepository.findByUserIdAndFollowId(user.getId(), foreignUser.getId());
+            if (followerCollection != null) {
+                model.addAttribute("isFollowing", true);
+            }
         }
 
         return "profile";
