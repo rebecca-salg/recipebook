@@ -57,11 +57,10 @@ public class LoginController {
     }
 
     @PostMapping("/register")
-    public String userInfo(@ModelAttribute User username, HttpSession session) {
+    public String userInfo(@ModelAttribute User user, HttpSession session) {
 
-        userRepository.save(username);
-
-        session.setAttribute("user", username);
+        userRepository.save(user);
+        session.setAttribute("user", user);
 
         return "redirect:/profile";
     }
@@ -82,18 +81,21 @@ public class LoginController {
     }
 
     @GetMapping("/edit")
-    public String editUser(Model model)
+    public String editUser(Model model, HttpSession session)
     {
+        model.addAttribute("user", session.getAttribute("user"));
         model.addAttribute("edit", true);
         return "registrationEdit";
     }
 
     @PostMapping("/edit")
-    public String userData(@ModelAttribute User username, HttpSession session) {
+    public String userData(@ModelAttribute User user, HttpSession session) {
 
-        userRepository.save(username);
+        User currentUser = (User)session.getAttribute("user");
+        user.setId(currentUser.getId());
+        userRepository.save(user);
 
-        session.setAttribute("user", username);
+        session.setAttribute("user", user);
         return "redirect:/profile";
     }
 
