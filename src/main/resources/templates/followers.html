@@ -16,6 +16,10 @@
     <div class="row">
         <h1>Following</h1>
     </div>
+    <div th:if="${removed} == true" class="alert alert-warning alert-dismissible fade show" role="alert">
+        You stopped following the user!
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
     <table class="table">
         <thead>
         <tr>
@@ -26,9 +30,9 @@
         </thead>
         <tbody>
         <tr th:each="friend : ${followers}">
-            <td><p class="mb-0" th:text="${friend.username}">Title</p></td>
+            <td><a class="link-secondary text-decoration-none" th:href="'/profile?userId=' + ${friend.id}" th:text="${friend.username}">Title</a></td>
             <td><a class="link-secondary text-decoration-none" th:href="'/recipes?userId=' + ${friend.id}">Recipes</a></td>
-            <td><a class="link-secondary text-decoration-none" th:href="'/profile?userId=' + ${friend.id}">Profile</a></td>
+            <td class="d-flex justify-content-end"><a th:href="'/unfollowUser/' + ${friend.id}"><Button class="btn btn-primary">Unfollow</Button></a></td>
         </tr>
         </tbody>
     </table>
