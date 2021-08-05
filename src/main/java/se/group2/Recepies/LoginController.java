@@ -4,12 +4,14 @@ package se.group2.Recepies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -18,28 +20,26 @@ public class LoginController {
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping("/start")
-    public String loginPage(HttpSession session){
-        return "loggedInStart";
+    @GetMapping("/")
+    public String startPage(Model model){
+        model.addAttribute("login", new Login());
+        return "index";
     }
 
     @PostMapping("/login")
-    public String loginPageInfo(HttpSession session,
-                                @RequestParam(required = false,defaultValue = " ") String username,
-                                @RequestParam(required = false,defaultValue = " ") String password,
-                                Model model) {
+    public String loginPageInfo(HttpSession session, Model model, @Valid Login login, BindingResult result) {
 
-        List<User> users = (List) userRepository.findAll();
+        if(result.hasErrors()) {
+            return "index";
+        }
 
-        for (User user : users ) {
-            if (username.equals(user.getEmail()) && password.equals(user.getPassword())) {
+        User user = userRepository.findByEmail(login.getEmail());
+
+            if (user != null && login.getPassword().equals(user.getPassword())) {
                 session.setAttribute("user", user);
                 return "redirect:/user";
             }
-        }
-
         model.addAttribute("error", true);
-
         return "index";
     }
 
@@ -58,18 +58,12 @@ public class LoginController {
     }
 
     @PostMapping("/register")
-    public String userInfo(@ModelAttribute User username, HttpSession session) {
+    public String userInfo(@ModelAttribute User user, HttpSession session) {
 
-        userRepository.save(username);
-
-        session.setAttribute("user", username);
+        userRepository.save(user);
+        session.setAttribute("user", user);
 
         return "redirect:/profile";
-    }
-
-    @GetMapping("/")
-    public String startPage(){
-        return "index";
     }
 
     @GetMapping("/profile")
@@ -83,18 +77,25 @@ public class LoginController {
     }
 
     @GetMapping("/edit")
-    public String editUser(Model model)
+    public String editUser(Model model, HttpSession session)
     {
+        model.addAttribute("user", session.getAttribute("user"));
         model.addAttribute("edit", true);
         return "registrationEdit";
     }
 
     @PostMapping("/edit")
-    public String userData(@ModelAttribute User username, HttpSession session) {
+    public String userData(Model model, @Valid User user, BindingResult result, HttpSession session) {
+        User currentUser = (User)session.getAttribute("user");
+        if(result.hasErrors()){
+            model.addAttribute("edit", true);
+            return "registrationEdit";
+        }
 
-        userRepository.save(username);
+        user.setId(currentUser.getId());
+        userRepository.save(user);
 
-        session.setAttribute("user", username);
+        session.setAttribute("user", user);
         return "redirect:/profile";
     }
 
