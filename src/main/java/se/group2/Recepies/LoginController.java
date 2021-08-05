@@ -40,7 +40,7 @@ public class LoginController {
                 session.setAttribute("user", user);
                 return "redirect:/user";
             }
-
+        model.addAttribute("error", true);
         return "index";
     }
 
