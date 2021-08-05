@@ -21,7 +21,7 @@ public class LoggedInStartController {
     @GetMapping("/user")
     String start(HttpSession session, Model model) {
         List<Recipe> recentRecipes = new ArrayList<>();
-        if(session.getAttribute("username") != null) {
+        if(session.getAttribute("user") != null) {
             List<Recipe> recipes = (List<Recipe>) repository.findAll();
             for(int i = recipes.size() - 1; i >= 0; i--) {
                 recentRecipes.add(recipes.get(i));
@@ -29,7 +29,7 @@ public class LoggedInStartController {
             model.addAttribute("recipes", recentRecipes);
             return "loggedInStart";
         }
-            return "redirect:/login";
+            return "redirect:/";
 
     }
 }
