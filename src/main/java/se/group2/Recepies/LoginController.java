@@ -86,9 +86,13 @@ public class LoginController {
     }
 
     @PostMapping("/edit")
-    public String userData(@ModelAttribute User user, HttpSession session) {
-
+    public String userData(Model model, @Valid User user, BindingResult result, HttpSession session) {
         User currentUser = (User)session.getAttribute("user");
+        if(result.hasErrors()){
+            model.addAttribute("edit", true);
+            return "registrationEdit";
+        }
+
         user.setId(currentUser.getId());
         userRepository.save(user);
 
