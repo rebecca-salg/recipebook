@@ -21,12 +21,14 @@
         <tr>
             <th scope="col">Username</th>
             <th scope="col"></th>
+            <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="friend : ${followers}">
             <td><p class="mb-0" th:text="${friend.username}">Title</p></td>
             <td><a class="link-secondary text-decoration-none" th:href="'/recipes?userId=' + ${friend.id}">Recipes</a></td>
+            <td><a class="link-secondary text-decoration-none" th:href="'/profile?userId=' + ${friend.id}">Profile</a></td>
         </tr>
         </tbody>
     </table>
