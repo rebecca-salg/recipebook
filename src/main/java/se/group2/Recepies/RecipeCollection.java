@@ -26,6 +26,14 @@ public class RecipeCollection {
     @OneToOne
     private Recipe recipe;
 
+    public RecipeCollection() {
+    }
+
+    public RecipeCollection(User user, Recipe recipe) {
+        this.user = user;
+        this.recipe = recipe;
+    }
+
     public Long getId() {
         return id;
     }
