@@ -4,12 +4,14 @@ package se.group2.Recepies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -18,27 +20,26 @@ public class LoginController {
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping("/start")
-    public String loginPage(HttpSession session){
-        return "loggedInStart";
+    @GetMapping("/")
+    public String startPage(Model model){
+        model.addAttribute("login", new User());
+        return "index";
     }
 
     @PostMapping("/login")
-    public String loginPageInfo(HttpSession session,
-                                @RequestParam(required = false,defaultValue = " ") String username,
-                                @RequestParam(required = false,defaultValue = " ") String password,
-                                Model model) {
+    public String loginPageInfo(HttpSession session, Model model,
+                                @Valid @ModelAttribute("login") User login,
+                                BindingResult result) {
+        if(result.hasErrors()) {
+            return "index";
+        }
 
-        List<User> users = (List) userRepository.findAll();
+        User user = userRepository.findByEmail(login.getEmail());
 
-        for (User user : users ) {
-            if (username.equals(user.getEmail()) && password.equals(user.getPassword())) {
+            if (user != null && login.getPassword().equals(user.getPassword())) {
                 session.setAttribute("user", user);
                 return "redirect:/user";
             }
-        }
-
-        model.addAttribute("error", true);
 
         return "index";
     }
@@ -65,11 +66,6 @@ public class LoginController {
         session.setAttribute("user", username);
 
         return "redirect:/profile";
-    }
-
-    @GetMapping("/")
-    public String startPage(){
-        return "index";
     }
 
     @GetMapping("/profile")
