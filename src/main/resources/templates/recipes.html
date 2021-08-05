@@ -25,7 +25,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="recipe : ${findAllRecipeByUserId}">
+        <tr th:each="recipe : ${recipes}">
             <th scope="row" th:text="${recipe.id}">ID</th>
             <td><a class="link-secondary text-decoration-none" th:href="'/recipes/' + ${recipe.id}" th:text="${recipe.title}">Title</a></td>
             <div th:switch="${recipe.category.name()}">

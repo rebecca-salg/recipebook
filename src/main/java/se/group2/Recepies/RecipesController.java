@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,12 +16,20 @@ public class RecipesController {
 
     @Autowired
     RecipeRepository repository;
-
+    @Autowired
+    RecipeCollectionRepository recipeCollectionRepository;
 
     @GetMapping("/recipes")
-    String onGet(Model model) {
-        model.addAttribute("recipes", (List<Recipe>) repository.findAll());
+    String onGet(Model model, HttpSession session) {
 
+        User user = (User) session.getAttribute("user");
+        List<RecipeCollection> collections = recipeCollectionRepository.findAllByUserId(user.getId());
+        List<Recipe> recipes = new ArrayList<>();
+
+        for(RecipeCollection collection : collections){
+            recipes.add(collection.getRecipe());
+        }
+        model.addAttribute("recipes",recipes);
         return "recipes";
     }
 
