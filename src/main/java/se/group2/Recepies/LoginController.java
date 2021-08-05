@@ -52,13 +52,18 @@ public class LoginController {
     @GetMapping("/register")
     public String registerPage(Model model){
 
+        model.addAttribute("user", new User());
         model.addAttribute("edit", false);
         return "registrationEdit";
     }
 
     @PostMapping("/register")
-    public String userInfo(@ModelAttribute User user, HttpSession session) {
+    public String userInfo(Model model, @Valid User user, BindingResult result, HttpSession session) {
 
+        if(result.hasErrors()){
+            model.addAttribute("edit", false);
+            return "registrationEdit";
+        }
         userRepository.save(user);
         session.setAttribute("user", user);
 
