@@ -22,14 +22,15 @@ public class LoginController {
 
     @GetMapping("/")
     public String startPage(Model model){
-        model.addAttribute("login", new User());
+        model.addAttribute("login", new Login());
         return "index";
     }
 
     @PostMapping("/login")
     public String loginPageInfo(HttpSession session, Model model,
-                                @Valid @ModelAttribute("login") User login,
+                                @Valid @ModelAttribute("login") Login login,
                                 BindingResult result) {
+
         if(result.hasErrors()) {
             return "index";
         }
