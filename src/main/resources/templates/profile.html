@@ -29,6 +29,7 @@
                 <p th:text="'Surname: ' + ${user.surName}" />
                 <p th:text="'Age: ' + ${user.age}" />
                 <p th:text="'City: ' + ${user.city}" />
+                <p th:text="'Description: ' + ${user.description}" />
             </div>
         </div>
         <div th:if="${foreignUser != null}" class="col-10">
@@ -44,6 +45,7 @@
                 <p th:text="'Surname: ' + ${foreignUser.surName}" />
                 <p th:text="'Age: ' + ${foreignUser.age}" />
                 <p th:text="'City: ' + ${foreignUser.city}" />
+                <p th:text="'Description: ' + ${foreignUser.description}" />
             </div>
         </div>
     </div>

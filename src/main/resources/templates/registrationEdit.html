@@ -13,6 +13,9 @@
 <body>
 <header th:insert="menu :: header"></header>
 <div class="container d-flex justify-content-center mt-5 mb-5" style="max-width: 900px; min-height: calc(100vh - 216px);">
+    <div class="form-col justify-content-center mt-5 mb-5 me-5">
+        <img src="pictures/registerPhoto.jpg" width style="width: 400px;">
+    </div>
     <div class="row justify-content-md-center align-items-center">
         <form method="POST" th:object="${user}">
             <div class="form-row">
