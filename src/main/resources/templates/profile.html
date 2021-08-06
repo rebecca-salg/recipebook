@@ -47,8 +47,15 @@
             </div>
         </div>
     </div>
-    <a th:if="${foreignUser == null}" href="/edit" class="btn btn-primary">Edit</a>
-    <a th:if="${foreignUser != null}" th:href="'/followUser/' + ${foreignUser.id}" class="btn btn-primary">Follow</a>
+    <div class="row">
+        <div class="col">
+            <button class="btn btn-primary" onclick="history.go(-1);">Back</button>
+        </div>
+        <div class="col">
+            <a th:if="${foreignUser == null}" href="/edit" class="btn btn-primary">Edit</a>
+            <a th:if="${foreignUser != null && isFollowing == null}" th:href="'/followUser/' + ${foreignUser.id}" class="btn btn-primary">Follow</a>
+        </div>
+    </div>
 </div>
 <div style="height: 136px;"></div>
 <div th:insert="footer :: footer"  class="w-100"/>
