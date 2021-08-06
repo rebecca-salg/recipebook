@@ -1,9 +1,11 @@
 package se.group2.Recepies;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
 public interface FollowerCollectionRepository extends CrudRepository<FollowerCollection, Long> {
     List<FollowerCollection> findAllByUserId(Long id);
+    FollowerCollection findByUserIdAndFollowId(Long userId, Long followId);
 }

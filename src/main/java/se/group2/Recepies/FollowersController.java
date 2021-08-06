@@ -42,12 +42,8 @@ public class FollowersController {
     @GetMapping("/unfollowUser/{id}")
     String removeFollow(Model model, HttpSession session, @PathVariable Long id) {
         User user = (User)session.getAttribute("user");
-        List<FollowerCollection> followerCollection = followerCollectionRepository.findAllByUserId(user.getId());
-        for(FollowerCollection followers: followerCollection){
-            if(followers.getFollow().getId() == id){
-                followerCollectionRepository.deleteById(followers.getId());
-            }
-        }
+        FollowerCollection followerCollection = followerCollectionRepository.findByUserIdAndFollowId(user.getId(), id);
+        followerCollectionRepository.deleteById(followerCollection.getId());
 
         return "redirect:/followers?removed=true";
     }
