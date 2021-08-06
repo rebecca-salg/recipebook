@@ -17,6 +17,9 @@
         <form method="POST" th:object="${user}">
             <div class="form-row">
                 <div class="form-group col-md-6">
+                    <div th:if="${error} == true" class="alert alert-danger">
+                        Email Already Registered
+                    </div>
                     <label for="inputEmail4">Email</label>
                     <input type="email" class="form-control" style="width:300px;" id="inputEmail4" placeholder="Email"
                            name="email" th:field="*{email}" th:errorclass="is-invalid">
